@@ -1,20 +1,21 @@
-import { createContext } from "react";
+import { createContext , useState} from "react";
 
 const CotizadorContext = createContext()
 
 const CotizadorProvider = ({children}) => {
 
-    const hola = "Hola mundoaaaaaaaaaaa"
+    const [modal, setModal] = useState(false)
 
-    const fnHola = () =>{
-        console.log('Hola mundo desde una funcion')
+    const cambiarState = ()=>{
+        setModal(!modal)
     }
+  
     return(
         // con el useContext solo podemos acceder a lo que este dentro
         <CotizadorContext.Provider
             value={{
-                hola,
-                fnHola
+              modal,
+              cambiarState
             }}
         >
             {children}
