@@ -4,18 +4,12 @@ const CotizadorContext = createContext()
 
 const CotizadorProvider = ({children}) => {
 
-    const [modal, setModal] = useState(false)
-
-    const cambiarState = ()=>{
-        setModal(!modal)
-    }
   
     return(
         // con el useContext solo podemos acceder a lo que este dentro
         <CotizadorContext.Provider
             value={{
-              modal,
-              cambiarState
+            
             }}
         >
             {children}
