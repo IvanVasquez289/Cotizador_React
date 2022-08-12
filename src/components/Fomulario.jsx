@@ -4,7 +4,7 @@ import useCotizador from '../hooks/useCotizador'
 import Error from './Error'
 const Fomulario = () => {
 
-    const {handleChangeDatos, datos, error, setError} = useCotizador()
+    const {handleChangeDatos, datos, error, setError, cotizarSeguro} = useCotizador()
 
     const handleSubmit = e =>{
         e.preventDefault()
@@ -15,6 +15,7 @@ const Fomulario = () => {
         }
 
         setError('')
+        cotizarSeguro()
 
     }
 

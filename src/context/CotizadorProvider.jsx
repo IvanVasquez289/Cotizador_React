@@ -1,5 +1,5 @@
 import { createContext , useState} from "react";
-
+import { calcularMarca, calcularPlan, formatearDinero, obtenerDiferenciaYear } from "../helpers";
 const CotizadorContext = createContext()
 
 const CotizadorProvider = ({children}) => {
@@ -11,6 +11,7 @@ const CotizadorProvider = ({children}) => {
     })
 
     const [error, setError] = useState('')
+    const [resultado, setResultado] = useState(0)
 
     const handleChangeDatos = e => {
         setDatos({
@@ -19,6 +20,30 @@ const CotizadorProvider = ({children}) => {
         })
     }
   
+
+    const cotizarSeguro = () =>{
+        const base = 2000
+        let resultado = base
+
+        const diferencia = obtenerDiferenciaYear(datos.year)
+        
+        // Restar el 3% por cada year
+        resultado -=(((diferencia * 3) * resultado)/100)
+        
+        // Europeo 30%
+        // Americano 15%
+        // Asiatico 5%
+        resultado *= calcularMarca(datos.marca)
+        
+        // Basico 20%
+        // Completo 50%
+        resultado *= calcularPlan(datos.plan)
+        
+        resultado = formatearDinero(resultado)
+
+        setResultado(resultado)
+    }   
+
     return(
         // con el useContext solo podemos acceder a lo que este dentro
         <CotizadorContext.Provider
@@ -26,7 +51,8 @@ const CotizadorProvider = ({children}) => {
                 datos,
                 handleChangeDatos,
                 error,
-                setError
+                setError,
+                cotizarSeguro
             }}
         >
             {children}
