@@ -29,7 +29,7 @@ const Fomulario = () => {
                 </label>
                 <select 
                     name="marca"
-                    className='p-3 bg-white border border-gray-200 w-full'
+                    className='p-3 bg-white border border-gray-200 w-full rounded'
                     value={datos.marca}
                     onChange={ e => handleChangeDatos(e) }
                 >
@@ -51,7 +51,7 @@ const Fomulario = () => {
                 </label>
                 <select 
                     name="year"
-                    className='p-3 bg-white border border-gray-200 w-full'
+                    className='p-3 bg-white border border-gray-200 w-full rounded'
                     value={datos.year}
                     onChange={ e => handleChangeDatos(e) }
                 >
